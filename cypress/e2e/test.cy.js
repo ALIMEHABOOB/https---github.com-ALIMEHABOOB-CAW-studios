@@ -15,13 +15,13 @@ describe('Dynamic Table Data Test', () => {
     const jsonData = JSON.stringify(this.data);
     testPage.getTextField().clear().type(jsonData, { parseSpecialCharSequences: false });
     testPage.getRefreshButton().click();
-
+    cy.wait(2000);
     testPage.getTableData().find("td").then($options=>{
       const Rcontain=[...$options].map(td=>td.innerText);
     expect(Rcontain).to.include.members(['Bob','20','male']);
     expect(Rcontain).to.include.members(['George','42','male']);
     expect(Rcontain).to.include.members(['Sara','42','female']);
     });
-    
+    cy.wait(2000);
   });
 });
